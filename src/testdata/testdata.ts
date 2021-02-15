@@ -130,6 +130,8 @@ export const networkFees = {
   }
 }
 
+
+
 export const getBalances = {
   "data": {
     "getBalances": [
