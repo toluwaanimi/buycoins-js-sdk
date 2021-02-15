@@ -2,7 +2,7 @@
   "name": "buycoins-js-sdk",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
   "files": [
     "build/**/*"
   ],
@@ -24,6 +24,7 @@
   "license": "ISC",
   "dependencies": {
     "apollo-boost": "^0.4.9",
+    "buycoins-js-sdk": "^1.0.0",
     "graphql-request": "^3.4.0",
     "reflect-metadata": "^0.1.13"
   },

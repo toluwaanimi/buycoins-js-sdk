@@ -89,7 +89,7 @@ buycoins.wallet.getWalletBalance({ crypto: "naira_token" }).then(
 
 ```
 
-Returns A sample response is :
+Returns a sample response  :
 
 ```json
       "data"
@@ -144,7 +144,7 @@ buycoins.wallet.getWalletBalance({ crypto: "naira_token" }).then(
 )
 ```
 
-Returns A sample response is :
+Returns a sample response  :
 
 ```json
     "data"
