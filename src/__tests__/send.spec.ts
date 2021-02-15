@@ -1,7 +1,7 @@
 import { createMockClient } from 'mock-apollo-client';
-import { getBalances, mockClient, networkFees } from '../testdata/testdata';
 import Send from '../lib/modules/send';
 import { sendRequest } from '../lib/modules/send/sendRequest';
+import { networkFees, sendOffChain } from '../testdata/send';
 
 // eslint-disable-next-line no-undef
 describe('Send', () => {
@@ -45,9 +45,10 @@ describe('Send', () => {
       amount: 0.01,
       crypto: 'bitcoin',
     };
-    const responseHandler = mockQuery.mockResolvedValue({});
-    mockClient.setRequestHandler(sendRequest.send, responseHandler);
+    const responseHandler = mockQuery.mockResolvedValue(sendOffChain);
+    mockClient.setRequestHandler(sendRequest.sendOffChain, responseHandler);
     const response = await send.sendOffChain(options);
     expect(responseHandler).toBeCalledTimes(1);
+    expect(response.data).toEqual(sendOffChain.data);
   });
 });

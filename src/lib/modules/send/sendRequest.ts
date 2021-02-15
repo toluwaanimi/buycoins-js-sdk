@@ -1,9 +1,8 @@
-import {gql} from "apollo-boost";
-
+import { gql } from 'apollo-boost';
 
 export const sendRequest = {
-    send: gql`
-    mutation($crypto: Cryptocurrency,$address: String!, $amount: BigDecimal!) {
+  send: gql`
+    mutation($crypto: Cryptocurrency, $address: String!, $amount: BigDecimal!) {
       send(cryptocurrency: $crypto, amount: $amount, address: $address) {
         id
         address
@@ -17,21 +16,21 @@ export const sendRequest = {
         }
       }
     }
-    `,
+  `,
 
-    sendOffChain: gql`
-    mutation($crypto: Cryptocurrency,$recipient: String!, $amount: BigDecimal!) {
-      sendOffchain(cryptocurrency: $crypto, recipient : $recipient, amount: $amount) {
-          initiated
+  sendOffChain: gql`
+    mutation($crypto: Cryptocurrency, $recipient: String!, $amount: BigDecimal!) {
+      sendOffchain(cryptocurrency: $crypto, recipient: $recipient, amount: $amount) {
+        initiated
       }
     }
-    `,
-    getNetworkFee: gql`
+  `,
+  getNetworkFee: gql`
     query($crypto: Cryptocurrency, $amount: BigDecimal!) {
       getEstimatedNetworkFee(cryptocurrency: $crypto, amount: $amount) {
         estimatedFee
         total
       }
     }
-    `,
-}
+  `,
+};
