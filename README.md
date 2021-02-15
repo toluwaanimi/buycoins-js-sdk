@@ -36,6 +36,8 @@ buycoins.wallet.createPaymentAddress({ crypto: "bitcoin" }).then(
 
 
 
+
+
 ```
 
 # Usage
@@ -50,6 +52,18 @@ buycoins.wallet.createPaymentAddress({ crypto: "bitcoin" }).then(
     console.log(res)
   }
 )
+```
+
+Sample Response
+
+```json
+  "data": {
+"createAddress": {
+"cryptocurrency": "bitcoin",
+"address": "3KYsTqVKMFuucVubShhvvjfUWCEzLQF816",
+},
+}
+
 ```
 
 ## Account Balances
@@ -76,40 +90,40 @@ buycoins.wallet.getWalletBalance({ crypto: "naira_token" }).then(
 
 Returns A sample response is :
 
-```json
-  "data": {
-"getBalances": [
-{
-"id": "QWNjb3VudC0=",
-"cryptocurrency": "usd_tether",
-"confirmedBalance": "0.0",
-},
-{
-"id": "QWNjb3VudC0=",
-"cryptocurrency": "naira_token",
-"confirmedBalance": "1000.0",
-},
-{
-"id": "QWNjb3VudC0=",
-"cryptocurrency": "bitcoin",
-"confirmedBalance": "0.0",
-},
-{
-"id": "QWNjb3VudC0=",
-"cryptocurrency": "ethereum",
-"confirmedBalance": "0.0",
-},
-{
-"id": "QWNjb3VudC0=",
-"cryptocurrency": "litecoin",
-"confirmedBalance": "0.0",
-},
-{
-"id": "QWNjb3VudC0=",
-"cryptocurrency": "usd_coin",
-"confirmedBalance": "0.0",
-},
-],
+```js
+      "data": {
+  "getBalances": [
+    {
+      "id": "QWNjb3VudC0=",
+      "cryptocurrency": "usd_tether",
+      "confirmedBalance": "0.0",
+    },
+    {
+      "id": "QWNjb3VudC0=",
+      "cryptocurrency": "naira_token",
+      "confirmedBalance": "1000.0",
+    },
+    {
+      "id": "QWNjb3VudC0=",
+      "cryptocurrency": "bitcoin",
+      "confirmedBalance": "0.0",
+    },
+    {
+      "id": "QWNjb3VudC0=",
+      "cryptocurrency": "ethereum",
+      "confirmedBalance": "0.0",
+    },
+    {
+      "id": "QWNjb3VudC0=",
+      "cryptocurrency": "litecoin",
+      "confirmedBalance": "0.0",
+    },
+    {
+      "id": "QWNjb3VudC0=",
+      "cryptocurrency": "usd_coin",
+      "confirmedBalance": "0.0",
+    },
+  ],
 },
 ```
 
@@ -126,16 +140,17 @@ buycoins.wallet.getWalletBalance({ crypto: "naira_token" }).then(
 
 Returns A sample response is :
 
-```json
-  "data": {
-"getBalances": [
-{
-"id": "QWNjb3VudC0=",
-"cryptocurrency": "naira_token",
-"confirmedBalance": "1000.0",
+```js
+    "data": {
+  "getBalances": [
+    {
+      "id": "QWNjb3VudC0=",
+      "cryptocurrency": "naira_token",
+      "confirmedBalance": "1000.0",
+    },
+  ],
 },
-],
-},
+    
 ```
 
 # Sending
@@ -157,14 +172,15 @@ buycoins.send.getNetworkFee({ crypto: "bitcoin", amount: 0.01 }).then(
 
 Sample Response
 
-```json
+```js
+      "data": {
+  "getEstimatedNetworkFee": {
+    "estimatedFee": "0.0004",
+      "total": "0.0104",
+  },
+},
 
-"data": {
-"getEstimatedNetworkFee": {
-"estimatedFee": "0.0004",
-"total": "0.0104",
-},
-},
+
 ```
 
 ## Send
@@ -191,17 +207,17 @@ buycoins.send.send({
 
 Sample Response for Error
 
-```json
-  "message": "Not enough Bitcoin in your main account",
-"locations": [
-{
-"line": 2,
-"column": 3,
-},
+```js
+      "message": "Not enough Bitcoin in your main account",
+  "locations": [
+  {
+    "line": 2,
+    "column": 3,
+  },
 ],
-"path": [
-"send",
-]
+  "path": [
+  "send",
+],
 ```
 
 This allows you to send cryptocurrency to an off-chain address using their buycoins username.
@@ -223,3 +239,113 @@ buycoins.send.sendOffChain({
   }
 )
 ```
+
+# Processing Withdrawal
+
+## Create withdrawal
+
+```js
+buycoins.withdrawal.createWithdrawal({}).then(
+  res => {
+    console.log(res)
+  }
+).catch(
+  err => {
+    console.log(err)
+  }
+)
+
+```
+
+## Cancel Withdrawal
+
+```js
+
+buycoins.withdrawal.cancelWithdrawal({}).then(
+  res => {
+    console.log(res)
+  }
+).catch(
+  err => {
+    console.log(err)
+  }
+)
+```
+
+## Get Bank Account
+
+### To retrieve all your bank accounts
+
+```js
+buycoins.withdrawal.getBankAccounts().then(
+  res => {
+    console.log(res)
+  }
+).catch(
+  err => {
+    console.log(err)
+  }
+)
+
+```
+
+Sample Response
+
+```js
+  "data": {
+    "getBankAccounts": [
+      {
+        "accountName": "emmanuel toluwanimi adebayo",
+        "accountType": "withdrawal",
+        "accountNumber": "1101551084",
+        "accountReference": null,
+        "id": "QmFua0FjY291bnQtODQyZjc0OTEtYTQxYi00YTI0LWJkYTEtODljMjJjY2ZiZTBi",
+        "bankName": "Kuda Bank",
+      },
+      {
+        "accountName": "adebayo, emmanuel toluwanimi",
+        "accountType": "withdrawal",
+        "accountNumber": "2086153506",
+        "accountReference": null,
+        "id": "QmFua0FjY291bnQtM2FhNjdjODgtMDc5Ni00YmNkLTgzNGQtNDIxMGRmZTAzNDc3",
+        "bankName": "United Bank For Africa",
+      },
+    ],
+  },
+```
+### To retrieve a single bank account details
+
+```js
+buycoins.withdrawal.getBankAccounts({
+  accountNumber: "202020202"
+}).then(
+  res => {
+    console.log(res)
+  }
+).catch(
+  err => {
+    console.log(err)
+  }
+)
+
+```
+
+Sample Response
+
+```js
+
+  "data": {
+    "getBankAccounts": [
+      {
+        "accountName": "adebayo, emmanuel toluwanimi",
+        "accountType": "withdrawal",
+        "accountNumber": "2086153506",
+        "accountReference": null,
+        "id": "QmFua0FjY291bnQtM2FhNjdjODgtMDc5Ni00YmNkLTgzNGQtNDIxMGRmZTAzNDc3",
+        "bankName": "United Bank For Africa",
+      },
+    ],
+  },
+```
+
+
