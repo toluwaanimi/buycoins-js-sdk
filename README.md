@@ -3,7 +3,7 @@
 ## Installation
 
 ```sh
-npm i buycoins-graphql-sdk
+npm i buycoins-js-sdk
 ```
 
 ### Authentication
