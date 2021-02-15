@@ -1,22 +1,19 @@
 export const sendError = {
-  'message': 'Not enough Bitcoin in your main account',
-  'locations': [
+  message: 'Not enough Bitcoin in your main account',
+  locations: [
     {
-      'line': 2,
-      'column': 3,
+      line: 2,
+      column: 3,
     },
   ],
-  'path': [
-    'send',
-  ],
+  path: ['send'],
 };
 
-
 export const networkFees = {
-  'data': {
-    'getEstimatedNetworkFee': {
-      'estimatedFee': '0.0004',
-      'total': '0.0104',
+  data: {
+    getEstimatedNetworkFee: {
+      estimatedFee: '0.0004',
+      total: '0.0104',
     },
   },
 };

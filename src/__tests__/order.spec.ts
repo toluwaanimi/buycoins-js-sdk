@@ -3,7 +3,6 @@ import { orderRequest } from '../lib/modules/order/orderRequest';
 import Order from '../lib/modules/order';
 import { priceData } from '../testdata/order';
 
-
 describe('Order', () => {
   // tslint:disable-next-line:no-shadowed-variable
   let mockClient: any;
@@ -44,7 +43,4 @@ describe('Order', () => {
     });
     expect(responseHandler).toBeCalledTimes(1);
   });
-
-
-
 });

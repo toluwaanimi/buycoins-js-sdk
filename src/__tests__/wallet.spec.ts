@@ -3,7 +3,6 @@ import Wallet from '../lib/modules/wallet';
 import { walletRequest } from '../lib/modules/wallet/walletRequest';
 import { createWalletAddress, getAllWalletBalance } from '../testdata/wallet';
 
-
 describe('Wallet', () => {
   // tslint:disable-next-line:no-shadowed-variable
   let mockClient: any;

@@ -4,7 +4,6 @@ import { tradeRequest } from '../lib/modules/trade/tradeRequest';
 import { walletRequest } from '../lib/modules/wallet/walletRequest';
 import { getOrders, getOrdersExpiry, marketBook } from '../testdata/trade';
 
-
 describe('Trade', () => {
   // tslint:disable-next-line:no-shadowed-variable
   let mockClient: any;
@@ -27,7 +26,6 @@ describe('Trade', () => {
     mockClient.setRequestHandler(tradeRequest.getOrders, responseHandler);
     await trade.getOrders({ status: 'open' });
     expect(responseHandler).toBeCalledTimes(1);
-
   });
 
   test('get orders ', async () => {

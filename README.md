@@ -91,7 +91,7 @@ buycoins.wallet.getWalletBalance({ crypto: "naira_token" }).then(
 
 Returns A sample response is :
 
-```js
+```json
       "data"
 :
 {
@@ -146,7 +146,7 @@ buycoins.wallet.getWalletBalance({ crypto: "naira_token" }).then(
 
 Returns A sample response is :
 
-```js
+```json
     "data"
 :
 {
@@ -183,7 +183,7 @@ buycoins.send.getNetworkFee({ crypto: "bitcoin", amount: 0.01 }).then(
 
 Sample Response
 
-```js
+```json
       "data"
 :
 {
@@ -228,7 +228,7 @@ buycoins.send.send({
 
 Sample Response for Error
 
-```js
+```json
       "message"
 :
 "Not enough Bitcoin in your main account",
@@ -289,7 +289,7 @@ buycoins.withdrawal.createWithdrawal({
 
 Sample Error Response
 
-```js
+```json
 
 "message"
 :
@@ -345,7 +345,7 @@ buycoins.withdrawal.getBankAccounts().then(
 
 Sample Response
 
-```js
+```json
   "data"
 :
 {
@@ -392,25 +392,23 @@ buycoins.withdrawal.getBankAccounts({
 
 Sample Response
 
-```js
+```json
 
 "data"
 :
 {
-  "getBankAccounts"
-:
-  [
-    {
-      "accountName": "adebayo, emmanuel toluwanimi",
-      "accountType": "withdrawal",
-      "accountNumber": "2086153506",
-      "accountReference": null,
-      "id": "QmFua0FjY291bnQtM2FhNjdjODgtMDc5Ni00YmNkLTgzNGQtNDIxMGRmZTAzNDc3",
-      "bankName": "United Bank For Africa",
-    },
-  ],
-}
-,
+"getBankAccounts":
+[
+{
+"accountName": "adebayo, emmanuel toluwanimi",
+"accountType": "withdrawal",
+"accountNumber": "2086153506",
+"accountReference": null,
+"id": "QmFua0FjY291bnQtM2FhNjdjODgtMDc5Ni00YmNkLTgzNGQtNDIxMGRmZTAzNDc3",
+"bankName": "United Bank For Africa",
+},
+],
+},
 ```
 
 ## Trading
@@ -474,50 +472,46 @@ buycoins.trade.getOrders({ status: "open" }).then(
 
 Sample Response
 
-```js
+```json
 
 data: {
-  getOrders: {
-    dynamicPriceExpiry: 1612244515,
-      orders
-  :
-    {
-      edges: [
-        {
-          node: {
-            id: "UG9zdE9yZGVyLWQyMzBhYTU4LWU2ZDktNDM2MS04ODFlLWUzNTc1N2EwMWY2Nw==",
-            cryptocurrency: "bitcoin",
-            coinAmount: "0.00998924",
-            side: "buy",
-            status: "active",
-            createdAt: 1612242637,
-            pricePerCoin: "50872.0",
-            priceType: "dynamic",
-            staticPrice: null,
-            dynamicExchangeRate: "1",
-          },
-        },
-        {
-          node: {
-            id: "UG9zdE9yZGVyLWUxZmY1YWZjLTRhN2EtNDBmYS1hOWJmLWY4YjY4YTk0NjU4NA==",
-            cryptocurrency: "bitcoin",
-            coinAmount: "0.00998729",
-            side: "buy",
-            status: "active",
-            createdAt: 1612242475,
-            pricePerCoin: "50872.0",
-            priceType: "dynamic",
-            staticPrice: null,
-            dynamicExchangeRate: "1",
-          },
-        },
-      ],
-    }
-  ,
-  }
-,
-}
-,
+getOrders: {
+dynamicPriceExpiry: 1612244515,
+orders:
+{
+edges: [
+{
+node: {
+id: "UG9zdE9yZGVyLWQyMzBhYTU4LWU2ZDktNDM2MS04ODFlLWUzNTc1N2EwMWY2Nw==",
+cryptocurrency: "bitcoin",
+coinAmount: "0.00998924",
+side: "buy",
+status: "active",
+createdAt: 1612242637,
+pricePerCoin: "50872.0",
+priceType: "dynamic",
+staticPrice: null,
+dynamicExchangeRate: "1",
+},
+},
+{
+node: {
+id: "UG9zdE9yZGVyLWUxZmY1YWZjLTRhN2EtNDBmYS1hOWJmLWY4YjY4YTk0NjU4NA==",
+cryptocurrency: "bitcoin",
+coinAmount: "0.00998729",
+side: "buy",
+status: "active",
+createdAt: 1612242475,
+pricePerCoin: "50872.0",
+priceType: "dynamic",
+staticPrice: null,
+dynamicExchangeRate: "1",
+},
+},
+],
+},
+},
+},
 ```
 
 ## Market Book
@@ -574,59 +568,49 @@ buycoins.trade.getMarketBook().then(
 
 Sample Response
 
-```js
+```json
 
 "data"
 :
 {
-  "getMarketBook"
-:
-  {
-    "dynamicPriceExpiry"
-  :
-    1613415997,
-      "orders"
-  :
-    {
-      "edges"
-    :
-      [
-        {
-          "node": {
-            "id": "UG9zdE9yZGVyLTA3ODNiODMxLWYyYjMtNDI3ZS1iMjA2LWQyODI0YTI1ZTZjZg==",
-            "cryptocurrency": "bitcoin",
-            "coinAmount": "0.00766816",
-            "side": "buy",
-            "status": "active",
-            "createdAt": 1613414583,
-            "pricePerCoin": "22300000.0",
-            "priceType": "static",
-            "staticPrice": "2230000000",
-            "dynamicExchangeRate": null,
-          },
-        },
-        {
-          "node": {
-            "id": "UG9zdE9yZGVyLTAyOGEyZGNjLTdmYmUtNGI0NC1iOTkwLTU5NjQ3MjUxMDUzNQ==",
-            "cryptocurrency": "bitcoin",
-            "coinAmount": "0.00277",
-            "side": "buy",
-            "status": "active",
-            "createdAt": 1613413188,
-            "pricePerCoin": "22400000.0",
-            "priceType": "static",
-            "staticPrice": "2240000000",
-            "dynamicExchangeRate": null,
-          },
-        }
-
-      ],
-    }
-  ,
-  }
-,
+"getMarketBook": {
+"dynamicPriceExpiry": 1613415997,
+"orders":
+{
+"edges":
+[
+{
+"node": {
+"id": "UG9zdE9yZGVyLTA3ODNiODMxLWYyYjMtNDI3ZS1iMjA2LWQyODI0YTI1ZTZjZg==",
+"cryptocurrency": "bitcoin",
+"coinAmount": "0.00766816",
+"side": "buy",
+"status": "active",
+"createdAt": 1613414583,
+"pricePerCoin": "22300000.0",
+"priceType": "static",
+"staticPrice": "2230000000",
+"dynamicExchangeRate": null,
+},
+},
+{
+"node": {
+"id": "UG9zdE9yZGVyLTAyOGEyZGNjLTdmYmUtNGI0NC1iOTkwLTU5NjQ3MjUxMDUzNQ==",
+"cryptocurrency": "bitcoin",
+"coinAmount": "0.00277",
+"side": "buy",
+"status": "active",
+"createdAt": 1613413188,
+"pricePerCoin": "22400000.0",
+"priceType": "static",
+"staticPrice": "2240000000",
+"dynamicExchangeRate": null,
+},
 }
-,
+],
+},
+},
+},
 ```
 
 # Placing Orders
@@ -660,24 +644,24 @@ buycoins.order.getPrices().then(
 
 Sample Response
 
-```js
-  getPrices: [
-  {
-    id: '2',
-    cryptocurrency: 'bitcoin',
-    buyPricePerCoin: '16530037.235',
-    minBuy: '0.001',
-    maxBuy: '0.45663548',
-    expiresAt: 1612008724,
-  },
-  {
-    id: '3',
-    cryptocurrency: 'ethereum',
-    buyPricePerCoin: '656408.797',
-    minBuy: '0.02',
-    maxBuy: '11.49923881',
-    expiresAt: 1612008724,
-  },
+```json
+  "getPrices": [
+{
+"id": '2',
+"cryptocurrency": 'bitcoin',
+"buyPricePerCoin": '16530037.235',
+"minBuy": '0.001',
+"maxBuy": '0.45663548',
+"expiresAt": 1612008724,
+},
+{
+"id": '3',
+"cryptocurrency": 'ethereum',
+"buyPricePerCoin": '656408.797',
+"minBuy": '0.02',
+"maxBuy": '11.49923881',
+"expiresAt": 1612008724,
+},
 ],
 ```
 
