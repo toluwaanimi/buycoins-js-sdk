@@ -29,7 +29,8 @@
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "node-fetch": "^2.6.1",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "mock-apollo-client": "^1.0.0"
   },
   "devDependencies": {
     "@types/graphql": "^14.5.0",
@@ -37,7 +38,6 @@
     "@types/node-fetch": "^2.5.8",
     "husky": "^5.0.9",
     "jest": "^26.6.3",
-    "mock-apollo-client": "^1.0.0",
     "prettier": "^2.2.1",
     "standard-version": "^9.1.0",
     "ts-jest": "^26.5.1",
