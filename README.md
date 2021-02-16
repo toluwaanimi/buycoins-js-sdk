@@ -64,7 +64,7 @@ Sample Response
 
 ## Account Balances
 
-You can view your balance(s) at any time by calling the getBalances query. This will return all your balances or the
+You can view your balance(s) at any time by calling the getWalletBalance method. This will return all your balances or the
 balance of a particular cryptocurrency argument passed in.
 
 ```js
