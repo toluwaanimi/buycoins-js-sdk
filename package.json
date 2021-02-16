@@ -1,6 +1,6 @@
 {
   "name": "buycoins-js-sdk",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "build/index.js",
   "files": [
@@ -12,8 +12,7 @@
     "type-check": "tsc --noEmt",
     "format": "prettier --write src/**/*.ts",
     "lint": "tslint -p tsconfig.json",
-    "preversion": "npm run lint",
-    "publish": "npm publish --access public"
+    "preversion": "npm run lint"
   },
   "keywords": [],
   "author": "",
