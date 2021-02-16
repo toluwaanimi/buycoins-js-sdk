@@ -28,7 +28,7 @@ describe('Trade', () => {
     expect(responseHandler).toBeCalledTimes(1);
   });
 
-  test('get orders ', async () => {
+  test('get order Expiry ', async () => {
     const responseHandler = mockQuery.mockResolvedValue(getOrdersExpiry);
     mockClient.setRequestHandler(tradeRequest.getOrdersExpiry, responseHandler);
     await trade.getOrdersExpiry({ status: 'open' });

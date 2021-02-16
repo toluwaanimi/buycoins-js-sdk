@@ -2,6 +2,7 @@ import { createMockClient } from 'mock-apollo-client';
 import Withdrawal from '../lib/modules/withdrawal';
 import { withdrawalRequest } from '../lib/modules/withdrawal/withdrawalRequest';
 import { walletRequest } from '../lib/modules/wallet/walletRequest';
+import { getAllBankAccounts } from '../testdata/withdrawal';
 
 describe('Withdrawal', () => {
   // tslint:disable-next-line:no-shadowed-variable
@@ -35,7 +36,7 @@ describe('Withdrawal', () => {
   });
 
   test('get bank accounts', async () => {
-    const responseHandler = mockQuery.mockResolvedValue({});
+    const responseHandler = mockQuery.mockResolvedValue(getAllBankAccounts);
     mockClient.setRequestHandler(withdrawalRequest.getAllBankAccounts, responseHandler);
     await withdrawal.getBankAccounts();
     expect(responseHandler).toBeCalledTimes(1);

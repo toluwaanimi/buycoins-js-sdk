@@ -14,6 +14,7 @@ A  simple Javascript SDK for the [Buycoins API](https://developers.buycoins.afri
     * [Wallet Balance](#account-balances)
     
 * [Sending](#sending)
+  
     *[Network Fee](#network-fee)
     *[Send](#send)
 
