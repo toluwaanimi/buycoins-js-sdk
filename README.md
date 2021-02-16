@@ -35,10 +35,6 @@ buycoins.wallet.createPaymentAddress({ crypto: "bitcoin" }).then(
 )
 
 
-
-
-
-
 ```
 
 # Usage
@@ -59,12 +55,11 @@ Sample Response
 
 ```json
   "data": {
-"createAddress": {
-"cryptocurrency": "bitcoin",
-"address": "3KYsTqVKMFuucVubShhvvjfUWCEzLQF816",
-},
-}
-
+    "createAddress": {
+        "cryptocurrency": "bitcoin",
+        "address": "3KYsTqVKMFuucVubShhvvjfUWCEzLQF816",
+      },
+  }
 ```
 
 ## Account Balances
@@ -80,24 +75,14 @@ buycoins.wallet.getWalletBalance().then(
 )
 
 
-buycoins.wallet.getWalletBalance({ crypto: "naira_token" }).then(
-  res => {
-    console.log(res)
-  }
-)
-
-
 ```
 
 Returns a sample response  :
 
 ```json
-      "data"
-:
-{
-  "getBalances"
-:
-  [
+"data":{
+    "getBalances":
+          [
     {
       "id": "QWNjb3VudC0=",
       "cryptocurrency": "usd_tether",
@@ -147,11 +132,8 @@ buycoins.wallet.getWalletBalance({ crypto: "naira_token" }).then(
 Returns a sample response  :
 
 ```json
-    "data"
-:
-{
-  "getBalances"
-:
+"data":{
+  "getBalances":
   [
     {
       "id": "QWNjb3VudC0=",
@@ -160,8 +142,6 @@ Returns a sample response  :
     },
   ],
 }
-,
-
 ```
 
 # Sending
@@ -178,30 +158,17 @@ buycoins.send.getNetworkFee({ crypto: "bitcoin", amount: 0.01 }).then(
 
   }
 )
-
 ```
 
 Sample Response
 
 ```json
-      "data"
-:
-{
-  "getEstimatedNetworkFee"
-:
-  {
-    "estimatedFee"
-  :
-    "0.0004",
-      "total"
-  :
-    "0.0104",
-  }
-,
+"data":{
+  "getEstimatedNetworkFee": {
+    "estimatedFee": "0.0004",
+      "total":"0.0104",
+  },
 }
-,
-
-
 ```
 
 ## Send
@@ -229,29 +196,21 @@ buycoins.send.send({
 Sample Response for Error
 
 ```json
-      "message"
-:
-"Not enough Bitcoin in your main account",
-  "locations"
-:
-[
+"message":"Not enough Bitcoin in your main account",
+  "locations":[
   {
     "line": 2,
     "column": 3,
   },
-],
-  "path"
-:
-[
+  ],
+  "path":[
   "send",
-],
+  ],
 ```
 
 This allows you to send cryptocurrency to an off-chain address using their buycoins username.
 
 ```js
-
-
 buycoins.send.sendOffChain({
   recipient: "henadad",
   amount: 0.01,
@@ -290,29 +249,22 @@ buycoins.withdrawal.createWithdrawal({
 Sample Error Response
 
 ```json
-
-"message"
-:
-"Withdrawal is currently unavailable",
-  "locations"
-:
-[
+"message":"Withdrawal is currently unavailable",
+  "locations":[
   {
     "line": 2,
     "column": 3,
   },
-],
-  "path"
-:
-[
+  ],
+  "path":
+  [
   "createWithdrawal",
-]
+  ]
 ```
 
 ## Cancel Withdrawal
 
 ```js
-
 buycoins.withdrawal.cancelWithdrawal({
   payment: "djdjvdssfs"
 }).then(
@@ -346,11 +298,8 @@ buycoins.withdrawal.getBankAccounts().then(
 Sample Response
 
 ```json
-  "data"
-:
-{
-  "getBankAccounts"
-:
+"data":{
+  "getBankAccounts":
   [
     {
       "accountName": "emmanuel toluwanimi adebayo",
@@ -393,21 +342,17 @@ buycoins.withdrawal.getBankAccounts({
 Sample Response
 
 ```json
-
-"data"
-:
-{
-"getBankAccounts":
-[
-{
-"accountName": "adebayo, emmanuel toluwanimi",
-"accountType": "withdrawal",
-"accountNumber": "2086153506",
-"accountReference": null,
-"id": "QmFua0FjY291bnQtM2FhNjdjODgtMDc5Ni00YmNkLTgzNGQtNDIxMGRmZTAzNDc3",
-"bankName": "United Bank For Africa",
-},
-],
+"data":{
+  "getBankAccounts":[
+      {
+    "accountName": "adebayo, emmanuel toluwanimi",
+    "accountType": "withdrawal",
+    "accountNumber": "2086153506",
+    "accountReference": null,
+    "id": "QmFua0FjY291bnQtM2FhNjdjODgtMDc5Ni00YmNkLTgzNGQtNDIxMGRmZTAzNDc3",
+    "bankName": "United Bank For Africa",
+    },
+  ],
 },
 ```
 
@@ -461,8 +406,6 @@ priceType: The price type either static or dynamic
 dynamicExchangeRate: The dynamic exchange rate in Naira
 
 ```js
-
-
 buycoins.trade.getOrders({ status: "open" }).then(
   res => {
     console.log(res)
@@ -473,44 +416,42 @@ buycoins.trade.getOrders({ status: "open" }).then(
 Sample Response
 
 ```json
-
-data: {
-getOrders: {
-dynamicPriceExpiry: 1612244515,
-orders:
-{
-edges: [
-{
-node: {
-id: "UG9zdE9yZGVyLWQyMzBhYTU4LWU2ZDktNDM2MS04ODFlLWUzNTc1N2EwMWY2Nw==",
-cryptocurrency: "bitcoin",
-coinAmount: "0.00998924",
-side: "buy",
-status: "active",
-createdAt: 1612242637,
-pricePerCoin: "50872.0",
-priceType: "dynamic",
-staticPrice: null,
-dynamicExchangeRate: "1",
-},
-},
-{
-node: {
-id: "UG9zdE9yZGVyLWUxZmY1YWZjLTRhN2EtNDBmYS1hOWJmLWY4YjY4YTk0NjU4NA==",
-cryptocurrency: "bitcoin",
-coinAmount: "0.00998729",
-side: "buy",
-status: "active",
-createdAt: 1612242475,
-pricePerCoin: "50872.0",
-priceType: "dynamic",
-staticPrice: null,
-dynamicExchangeRate: "1",
-},
-},
-],
-},
-},
+"data": {
+    "getOrders": {
+    "dynamicPriceExpiry": 1612244515,
+    "orders":{
+      "edges": [
+        {
+        "node": {
+        "id": "UG9zdE9yZGVyLWQyMzBhYTU4LWU2ZDktNDM2MS04ODFlLWUzNTc1N2EwMWY2Nw==",
+        "cryptocurrency": "bitcoin",
+        "coinAmount": "0.00998924",
+        "side": "buy",
+        "status": "active",
+        "createdAt": 1612242637,
+        "pricePerCoin": "50872.0",
+        "priceType": "dynamic",
+        "staticPrice": null,
+        "dynamicExchangeRate": "1",
+          },
+        },
+        {
+        "node": {
+            "id": "UG9zdE9yZGVyLWUxZmY1YWZjLTRhN2EtNDBmYS1hOWJmLWY4YjY4YTk0NjU4NA==",
+            "cryptocurrency": "bitcoin",
+            "coinAmount": "0.00998729",
+            "side": "buy",
+            "status": "active",
+            "createdAt": 1612242475,
+            "pricePerCoin": "50872.0",
+            "priceType": "dynamic",
+            "staticPrice": null,
+            "dynamicExchangeRate": "1",
+            },
+          },
+        ],
+      },
+    },
 },
 ```
 
@@ -569,47 +510,42 @@ buycoins.trade.getMarketBook().then(
 Sample Response
 
 ```json
-
-"data"
-:
-{
-"getMarketBook": {
-"dynamicPriceExpiry": 1613415997,
-"orders":
-{
-"edges":
-[
-{
-"node": {
-"id": "UG9zdE9yZGVyLTA3ODNiODMxLWYyYjMtNDI3ZS1iMjA2LWQyODI0YTI1ZTZjZg==",
-"cryptocurrency": "bitcoin",
-"coinAmount": "0.00766816",
-"side": "buy",
-"status": "active",
-"createdAt": 1613414583,
-"pricePerCoin": "22300000.0",
-"priceType": "static",
-"staticPrice": "2230000000",
-"dynamicExchangeRate": null,
-},
-},
-{
-"node": {
-"id": "UG9zdE9yZGVyLTAyOGEyZGNjLTdmYmUtNGI0NC1iOTkwLTU5NjQ3MjUxMDUzNQ==",
-"cryptocurrency": "bitcoin",
-"coinAmount": "0.00277",
-"side": "buy",
-"status": "active",
-"createdAt": 1613413188,
-"pricePerCoin": "22400000.0",
-"priceType": "static",
-"staticPrice": "2240000000",
-"dynamicExchangeRate": null,
-},
-}
-],
-},
-},
+"data":{
+    "getMarketBook": {
+    "dynamicPriceExpiry": 1613415997,
+    "orders":{
+      "edges":[
+        {
+      "node": {
+      "id": "UG9zdE9yZGVyLTA3ODNiODMxLWYyYjMtNDI3ZS1iMjA2LWQyODI0YTI1ZTZjZg==",
+      "cryptocurrency": "bitcoin",
+      "coinAmount": "0.00766816",
+      "side": "buy",
+      "status": "active",
+      "createdAt": 1613414583,
+      "pricePerCoin": "22300000.0",
+      "priceType": "static",
+      "staticPrice": "2230000000",
+      "dynamicExchangeRate": null,
+        },
+      },
+    {
+      "node": {
+      "id": "UG9zdE9yZGVyLTAyOGEyZGNjLTdmYmUtNGI0NC1iOTkwLTU5NjQ3MjUxMDUzNQ==",
+      "cryptocurrency": "bitcoin",
+      "coinAmount": "0.00277",
+      "side": "buy",
+      "status": "active",
+      "createdAt": 1613413188,
+      "pricePerCoin": "22400000.0",
+      "priceType": "static",
+      "staticPrice": "2240000000",
+      "dynamicExchangeRate": null,
+      },
+      }
+    ],
+  },
+  },
 },
 ```
 
@@ -633,8 +569,6 @@ maxBuy: This is the maximum amount of that cryptocurrency that can be bought
 expiresAt: This timestamp is when that price will expire.
 
 ```js
-
-
 buycoins.order.getPrices().then(
   res => {
     console.log(res)
@@ -645,23 +579,23 @@ buycoins.order.getPrices().then(
 Sample Response
 
 ```json
-  "getPrices": [
-{
-"id": '2',
-"cryptocurrency": 'bitcoin',
-"buyPricePerCoin": '16530037.235',
-"minBuy": '0.001',
-"maxBuy": '0.45663548',
-"expiresAt": 1612008724,
-},
-{
-"id": '3',
-"cryptocurrency": 'ethereum',
-"buyPricePerCoin": '656408.797',
-"minBuy": '0.02',
-"maxBuy": '11.49923881',
-"expiresAt": 1612008724,
-},
+"getPrices": [
+    {
+    "id": '2',
+    "cryptocurrency": 'bitcoin',
+    "buyPricePerCoin": '16530037.235',
+    "minBuy": '0.001',
+    "maxBuy": '0.45663548',
+    "expiresAt": 1612008724,
+  },
+  {
+    "id": '3',
+    "cryptocurrency": 'ethereum',
+    "buyPricePerCoin": '656408.797',
+    "minBuy": '0.02',
+    "maxBuy": '11.49923881',
+    "expiresAt": 1612008724,
+  },
 ],
 ```
 
@@ -677,7 +611,6 @@ Buy orders usually get filled in a minute but not more than 5 minutes. To check 
 node lookup on Order using the id returned in your buy order mutation.
 
 ```js
-
 buycoins.order.buy({
   price: 'QnV5Y29pbnNQcmljZS0zOGIwYTg1Yi1jNjA1LTRhZjAtOWQ1My01ODk1MGVkMjUyYmQ',
   coin_amount: 0.1,

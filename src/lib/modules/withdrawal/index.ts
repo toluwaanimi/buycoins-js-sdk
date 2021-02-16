@@ -8,11 +8,8 @@ export default class Withdrawal extends BASE {
   }
 
   async getBankAccounts(bankAccountOpts?: IBankAccounts): Promise<any> {
-    // @ts-ignore
-    if (bankAccountOpts) {
-      if (bankAccountOpts?.accountNumber){
-        return this.client.query({ query: withdrawalRequest.getBankAccount, variables: bankAccountOpts });
-      }
+    if (bankAccountOpts && bankAccountOpts?.accountNumber) {
+      return this.client.query({ query: withdrawalRequest.getBankAccount, variables: bankAccountOpts });
     }
     return this.client.query({ query: withdrawalRequest.getAllBankAccounts });
   }

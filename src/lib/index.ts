@@ -1,8 +1,6 @@
 // tslint:disable-next-line:no-var-requires
 import Webhooks from './modules/webhook';
-
-require('dotenv').config();
-import ApolloClient, { gql } from 'apollo-boost';
+import ApolloClient from 'apollo-boost';
 import BASE from './shared/Base';
 import Wallet from './modules/wallet';
 import Order from './modules/order';
