@@ -19,7 +19,7 @@ jobs:
       - run: npm install
         name: Install
       - run: npm ci --ignore-scripts
-      - run: npm build
+      - run: npm run build
         name: Build
       - run: npm publish --access public
         name: Publish
