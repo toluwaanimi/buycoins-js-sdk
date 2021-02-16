@@ -8,11 +8,8 @@ export default class Order extends BASE {
   }
 
   async getPrices(getPricesOpts?: IGetPrices): Promise<any> {
-    // @ts-ignore
-    if (getPricesOpts) {
-      if (getPricesOpts.crypto) {
-        return this.client.query({ query: orderRequest.getPrice, variables: getPricesOpts });
-      }
+    if (getPricesOpts && getPricesOpts.crypto) {
+      return this.client.query({ query: orderRequest.getPrice, variables: getPricesOpts });
     }
     return this.client.query({ query: orderRequest.getAllPrices });
   }

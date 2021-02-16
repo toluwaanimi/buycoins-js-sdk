@@ -1,16 +1,10 @@
 import * as crypto from 'crypto';
+import BASE from '../../shared/Base';
 
-export default class Webhooks {
-  sign(payload: any, key: string): string {
-    return crypto
-      .createHmac('sha1', key)
-      .update(JSON.stringify(payload))
-      .digest('hex');
-  }
+export default class Webhooks  {
 
-  // tslint:disable-next-line:variable-name ban-types
-  verify(body: any, webhook_token: string, webhook_signature: string): Boolean {
-    const signature = this.sign(body, webhook_token);
-    return signature === webhook_signature;
+  validateSignature(signature: string, body: string, token: string): boolean {
+    const hmacSignature = crypto.createHmac('sha1', token).update(body).digest('hex');
+    return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(hmacSignature));
   }
 }

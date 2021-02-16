@@ -1,16 +1,18 @@
+import { Cryptocurrency } from '../../shared/types/types';
+
 export interface INetworkFee {
-  crypto: string;
+  crypto: Cryptocurrency;
   amount: number;
 }
 
 export interface ISend {
   amount: number;
-  crypto: string;
+  crypto: Cryptocurrency;
   address: string;
 }
 
 export interface ISendOffChain {
   amount: number;
-  crypto: string;
+  crypto: Cryptocurrency;
   recipient: string;
 }

@@ -1,24 +1,25 @@
+import { Cryptocurrency, OrdersStatus, OrderSide, PriceType } from '../../shared/types/types';
 
 export enum side {
-    Buy = "buy",
-    Sell = "sell",
+  Buy = 'buy',
+  Sell = 'sell',
 }
 
 export interface IGetOrderOpts {
-    status: string
+  status: OrdersStatus
 }
 
 export interface IPlaceLimitOrderOpts {
-    orderSide: side,
-    amount: number,
-    crypto: string,
-    priceType: string
-    staticPrice?: number,
-    dynamicExchangeRate?: number,
+  orderSide: OrderSide,
+  amount: number,
+  crypto: Cryptocurrency,
+  priceType: PriceType
+  staticPrice?: number,
+  dynamicExchangeRate?: number,
 }
 
 export interface IMarketOrderOpts {
-    orderSide: string,
-    amount: number,
-    crypto: string,
+  orderSide: OrderSide,
+  amount: number,
+  crypto: Cryptocurrency,
 }

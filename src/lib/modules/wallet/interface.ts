@@ -1,8 +1,9 @@
+import { Cryptocurrency } from '../../shared/types/types';
 
 export interface createBody {
-    crypto: string
+    crypto: Cryptocurrency
 }
 
 export interface IBalance {
-    crypto?: string
+    crypto?: Cryptocurrency
 }

@@ -1,10 +1,12 @@
+import { Cryptocurrency, ID } from '../../shared/types/types';
+
 export interface IGetPrices {
-    crypto: string
+    crypto: Cryptocurrency
 }
 
 
 export interface IOrderOptions {
     coin_amount: number,
-    price: string,
-    crypto: string,
+    price: ID,
+    crypto: Cryptocurrency,
 }
