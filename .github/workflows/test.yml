@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 10.x, 12.x ]
+        node-version: [ 10.x ]
 
     steps:
       - name: Checkout
@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install -g codecov
-      - run: npm install
+      - run: npm ci --ignore-scripts
       - run: npm run lint
       - run: npm run test
       - run: codecov
