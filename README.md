@@ -1,5 +1,36 @@
 # Buycoins SDK
 
+A  simple Javascript SDK for the [Buycoins API](https://developers.buycoins.africa).
+
+# Table of Contents
+
+* [Installation](#installation)
+* [Authentication](#authentication)
+* [Quick Start](#quick-start)
+* [Usage](#usage)
+* [Wallet](#wallet)
+    * [Create deposit address](#create-address)
+    * [Confirmations](#confirmation)
+    * [Wallet Balance](#account-balances)
+    
+* [Sending](#sending)
+    *[Network Fee](#network-fee)
+    *[Send](#send)
+
+* [Withdrawal](#processing-withdrawal)
+    * [Create Withdraw](#create-withdrawal)
+    * [Cancel Withdrawal Request](#cancel-withdrawal)
+    * [Bank Account](#get-bank-account)
+    
+* [Trading](#trading)
+    * [Orders](#get-orders)
+    * [Market Book](#market-book)
+    * [Placing an Order](#placing-orders)
+    * [Buy](#buy)
+    * [Sell](#sell)
+    
+* [Webhook](#webhook)
+  * [Verification](#verification)
 ## Installation
 
 ```sh
@@ -15,13 +46,17 @@ Public Key: Think of this as a username. It"s how BuyCoins knows which user is a
 Think of this as a password. BuyCoins never stores your Secret Key, we only generate it and display it you ONCE. Copy &
 keep your secret key in a secure place (e.g Environment Variables).
 
-Quick Start
+
+To apply, please send an email to support@buycoins.africa from your email account registered on BuyCoins
+
+## Quick Start
 
 ```js
 
 import { Buycoins } from "buycoins-js-sdk"
 
 // Pass in the public and secret key when creating a new instance.
+// Your pulic key is also your username while your secret key is your password
 const buycoins = new Buycoins("public key", "secret key")
 
 buycoins.wallet.createPaymentAddress({ crypto: "bitcoin" }).then(
@@ -34,11 +69,11 @@ buycoins.wallet.createPaymentAddress({ crypto: "bitcoin" }).then(
   }
 )
 
-
 ```
 
 # Usage
 
+## Wallet
 ## Create Address
 
 To receive cryptocurrency, you will first have to create an address on BuyCoins then send this address to the sender.
@@ -62,7 +97,21 @@ Sample Response
   }
 ```
 
-## Account Balances
+
+## Confirmation
+
+Confirmations required for supported cryptocurrencies before your account is credited with sent transactions:
+
+Bitcoin: 1
+
+Ethereum: 20
+
+Litecoin: 12
+
+NairaToken: 1
+
+
+## Wallet Balances
 
 You can view your balance(s) at any time by calling the getWalletBalance method. This will return all your balances or the
 balance of a particular cryptocurrency argument passed in.
@@ -73,8 +122,6 @@ buycoins.wallet.getWalletBalance().then(
     console.log(res)
   }
 )
-
-
 ```
 
 Returns a sample response  :
@@ -226,9 +273,21 @@ buycoins.send.sendOffChain({
 )
 ```
 
+## Limits
+Daily sending limits
+
+You can currently send a maximum number of coins out of your account to an address daily.
+Bitcoin: 1 BTC
+Ethereum: 50 ETH
+Litecoin: 50 LTC
+NairaToken: 2,000,000 NGNT
+
+You may request higher limits by contacting support@buycoins.africa with an explanation of your use case
+
 # Processing Withdrawal
 
 ## Create withdrawal
+To process withdrawal into your bank account, you call the createWithdrawal by passing the Bank Account ID and the amount you intend to withdrawal.
 
 ```js
 buycoins.withdrawal.createWithdrawal({
@@ -263,6 +322,8 @@ Sample Error Response
 ```
 
 ## Cancel Withdrawal
+
+It is possible to cancel withdrawal request by calling the cancelWithdrawal method.
 
 ```js
 buycoins.withdrawal.cancelWithdrawal({
@@ -581,23 +642,54 @@ Sample Response
 ```json
 "getPrices": [
     {
-    "id": '2',
-    "cryptocurrency": 'bitcoin',
-    "buyPricePerCoin": '16530037.235',
-    "minBuy": '0.001',
-    "maxBuy": '0.45663548',
+    "id": "2",
+    "cryptocurrency": "bitcoin",
+    "buyPricePerCoin": "16530037.235",
+    "minBuy": "0.001",
+    "maxBuy": "0.45663548",
     "expiresAt": 1612008724,
   },
   {
-    "id": '3',
-    "cryptocurrency": 'ethereum',
-    "buyPricePerCoin": '656408.797',
-    "minBuy": '0.02',
-    "maxBuy": '11.49923881',
+    "id": "3",
+    "cryptocurrency": "ethereum",
+    "buyPricePerCoin": "656408.797",
+    "minBuy": "0.02",
+    "maxBuy": "11.49923881",
     "expiresAt": 1612008724,
   },
 ],
 ```
+
+# Buy and Selling
+A primer on buying and selling cryptocurrency with the BuyCoins API
+
+There are two ways to buy or sell cryptocurrency using the BuyCoins API.
+1. Peer-to-peer trading
+2. Buying from and selling to BuyCoins directly.
+
+
+Peer-to-peer (P2P) trading
+P2P trading allows you to trade cryptocurrency with other users by posting limit orders or [market orders](#)
+
+Pros
+ * You can specify the exact price at which you want to buy or sell a cryptocurrency.
+
+Cons
+
+* Limit orders may take a while to be fulfilled because there might not be a user that wants to engage your order at your specified price for a while.
+
+
+Buying and Selling to BuyCoins
+
+You can buy from and sell to BuyCoins by placing buy and sell orders.
+
+Pros 
+* Your order is fulfilled near-instantly.
+
+Crons
+* You are unable to specify a price at which you want to buy/sell a cryptocurrency.
+
+
 
 # Buy
 
@@ -612,9 +704,9 @@ node lookup on Order using the id returned in your buy order mutation.
 
 ```js
 buycoins.order.buy({
-  price: 'QnV5Y29pbnNQcmljZS0zOGIwYTg1Yi1jNjA1LTRhZjAtOWQ1My01ODk1MGVkMjUyYmQ',
+  price: "QnV5Y29pbnNQcmljZS0zOGIwYTg1Yi1jNjA1LTRhZjAtOWQ1My01ODk1MGVkMjUyYmQ",
   coin_amount: 0.1,
-  crypto: 'bitcoin'
+  crypto: "bitcoin"
 }).then(
   res => {
     console.log(res)
@@ -635,12 +727,35 @@ do a node lookup on Order using the id returned in your buy order mutation.
 
 ```js
 buycoins.order.sell({
-  price: 'QnV5Y29pbnNQcmljZS0zOGIwYTg1Yi1jNjA1LTRhZjAtOWQ1My01ODk1MGVkMjUyYmQ',
+  price: "QnV5Y29pbnNQcmljZS0zOGIwYTg1Yi1jNjA1LTRhZjAtOWQ1My01ODk1MGVkMjUyYmQ",
   coin_amount: 0.1,
-  crypto: 'bitcoin'
+  crypto: "bitcoin"
 }).then(
   res => {
     console.log(res)
   }
 )
 ```
+
+
+## Webhook
+When certain events occur, BuyCoins will make a POST request to an endpoint of your choosing (HTTPS only) with relevant information in the request body.
+To update your Webhook URL, go to the API Settings screen on BuyCoins. Whenever you update your Webhook URL, a Webhook Token will be generated. 
+
+
+### Verification
+To be able to verify that requests to your Webhook URL are coming from BuyCoins and not a malicious actor:
+
+```js
+buycoins.webhook.validateSignature('signature','body', 'token').then(
+  res => {
+    
+  }
+)
+```
+
+Responding to a Webhook Request
+
+You should respond to an event with a 200 OK. We consider this an acknowledgement by your application.
+If your application responds with any status outside of the 2xx range, we will consider it unacknowledged and thus, continue to send it every hour for 3 hours.
+You don't need to send a request body or some other parameter as it would be discarded - we only pay attention to the status code.
