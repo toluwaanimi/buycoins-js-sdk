@@ -1,4 +1,3 @@
-// tslint:disable-next-line:no-var-requires
 import Webhooks from './modules/webhook';
 import ApolloClient from 'apollo-boost';
 import BASE from './shared/Base';
@@ -7,7 +6,6 @@ import Order from './modules/order';
 import Send from './modules/send';
 import Withdrawal from './modules/withdrawal';
 import Trade from './modules/trade';
-import { createBody } from './modules/wallet/interface';
 // tslint:disable-next-line:no-var-requires
 const fetch = require('cross-fetch/polyfill').fetch;
 

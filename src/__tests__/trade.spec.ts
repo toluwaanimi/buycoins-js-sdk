@@ -1,7 +1,6 @@
 import { createMockClient } from 'mock-apollo-client';
 import Trade from '../lib/modules/trade';
 import { tradeRequest } from '../lib/modules/trade/tradeRequest';
-import { walletRequest } from '../lib/modules/wallet/walletRequest';
 import { getOrders, getOrdersExpiry, marketBook } from '../testdata/trade';
 
 describe('Trade', () => {
@@ -17,15 +16,17 @@ describe('Trade', () => {
   test('get market book', async () => {
     const responseHandler = mockQuery.mockResolvedValue(marketBook);
     mockClient.setRequestHandler(tradeRequest.getMarketBook, responseHandler);
-    await trade.getMarketBook();
+    const response = await trade.getMarketBook();
     expect(responseHandler).toBeCalledTimes(1);
+    expect(response.data).toEqual(marketBook.data);
   });
 
   test('get orders ', async () => {
     const responseHandler = mockQuery.mockResolvedValue(getOrders);
     mockClient.setRequestHandler(tradeRequest.getOrders, responseHandler);
-    await trade.getOrders({ status: 'open' });
+    const response = await trade.getOrders({ status: 'open' });
     expect(responseHandler).toBeCalledTimes(1);
+    expect(response.data).toEqual(getOrders.data);
   });
 
   test('get order Expiry ', async () => {

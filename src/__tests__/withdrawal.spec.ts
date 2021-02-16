@@ -38,7 +38,8 @@ describe('Withdrawal', () => {
   test('get bank accounts', async () => {
     const responseHandler = mockQuery.mockResolvedValue(getAllBankAccounts);
     mockClient.setRequestHandler(withdrawalRequest.getAllBankAccounts, responseHandler);
-    await withdrawal.getBankAccounts();
+    const response = await withdrawal.getBankAccounts();
     expect(responseHandler).toBeCalledTimes(1);
+    expect(response.data).toEqual(getAllBankAccounts.data)
   });
 });

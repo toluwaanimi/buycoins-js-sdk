@@ -12,9 +12,13 @@
     "type-check": "tsc --noEmt",
     "format": "prettier --write src/**/*.ts",
     "lint": "tslint -p tsconfig.json",
-    "preversion": "npm run lint"
+    "preversion": "npm run lint",
+    "release": "standard-version"
   },
-  "keywords": [],
+  "keywords": [
+    "buycoins",
+    "cryptocurrency"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -31,9 +35,11 @@
     "@types/graphql": "^14.5.0",
     "@types/jest": "^26.0.20",
     "@types/node-fetch": "^2.5.8",
+    "husky": "^5.0.9",
     "jest": "^26.6.3",
     "mock-apollo-client": "^1.0.0",
     "prettier": "^2.2.1",
+    "standard-version": "^9.1.0",
     "ts-jest": "^26.5.1",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
@@ -48,5 +54,15 @@
   "bugs": {
     "url": "https://github.com/toluwaanimi/buycoins-js-sdk.git/issues"
   },
-  "homepage": "https://github.com/toluwaanimi/buycoins-js-sdk"
+  "homepage": "https://github.com/toluwaanimi/buycoins-js-sdk",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
 }

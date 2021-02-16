@@ -48,7 +48,7 @@ Think of this as a password. BuyCoins never stores your Secret Key, we only gene
 keep your secret key in a secure place (e.g Environment Variables).
 
 
-To apply, please send an email to support@buycoins.africa from your email account registered on BuyCoins
+To apply, please send an email to support@buycoins.africa 
 
 ## Quick Start
 
