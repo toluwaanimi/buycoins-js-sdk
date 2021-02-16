@@ -16,38 +16,35 @@ describe('Send', () => {
   });
 
   test('network fee', async () => {
-    const options = {
-      amount: 0.01,
-      crypto: 'bitcoin',
-    };
     const responseHandler = mockQuery.mockResolvedValue(networkFees);
     mockClient.setRequestHandler(sendRequest.getNetworkFee, responseHandler);
-    const promise = await send.getNetworkFee(options);
+    const promise = await send.getNetworkFee({
+      amount: 0.01,
+      crypto: 'bitcoin',
+    });
     expect(responseHandler).toBeCalledTimes(1);
     await expect(promise.data).toEqual(networkFees.data);
   });
 
   test('it should send crypto to an address', async () => {
-    const options = {
+    const responseHandler = mockQuery.mockResolvedValue({});
+    mockClient.setRequestHandler(sendRequest.send, responseHandler);
+    const response = await send.send({
       address: 'uuurkrkmckmdmcmwkopu8e9w8',
       amount: 0.01,
       crypto: 'bitcoin',
-    };
-    const responseHandler = mockQuery.mockResolvedValue({});
-    mockClient.setRequestHandler(sendRequest.send, responseHandler);
-    const response = await send.send(options);
+    });
     expect(responseHandler).toBeCalledTimes(1);
   });
 
   test('should send crypto to a buycoins user by username', async () => {
-    const options = {
+    const responseHandler = mockQuery.mockResolvedValue(sendOffChain);
+    mockClient.setRequestHandler(sendRequest.sendOffChain, responseHandler);
+    const response = await send.sendOffChain({
       recipient: 'henadad',
       amount: 0.01,
       crypto: 'bitcoin',
-    };
-    const responseHandler = mockQuery.mockResolvedValue(sendOffChain);
-    mockClient.setRequestHandler(sendRequest.sendOffChain, responseHandler);
-    const response = await send.sendOffChain(options);
+    });
     expect(responseHandler).toBeCalledTimes(1);
     expect(response.data).toEqual(sendOffChain.data);
   });
