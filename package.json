@@ -7,7 +7,7 @@
     "build/**/*"
   ],
   "scripts": {
-    "test": "jest --config jestconfig.json",
+    "test": "jest --config jestconfig.json --coverage",
     "build": "tsc -d",
     "type-check": "tsc --noEmt",
     "format": "prettier --write src/**/*.ts",
@@ -28,9 +28,9 @@
     "dotenv": "^8.2.0",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
+    "mock-apollo-client": "^1.0.0",
     "node-fetch": "^2.6.1",
-    "reflect-metadata": "^0.1.13",
-    "mock-apollo-client": "^1.0.0"
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@types/graphql": "^14.5.0",

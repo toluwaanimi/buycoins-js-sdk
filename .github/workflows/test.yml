@@ -4,7 +4,7 @@ on: [ push ]
 
 jobs:
   run-test:
-    name: Lint and Run tests
+    name: Test Modules
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,8 +20,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install -g codecov
       - run: npm install
-      - run: npm ci --ignore-scripts
       - run: npm run lint
-      - run: npm test
       - run: codecov
 
